@@ -1,4 +1,5 @@
 #include "MyLib14.h"
+
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,6 +19,7 @@ void createMatr(double matr[n][k]) {
 }
 
 void printOutMatrix(double matrix[n][k]) {
+    cout << "Generated matrix:" << endl;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < k; j++) {
             cout << matrix[i][j] << "     ";
@@ -26,27 +28,55 @@ void printOutMatrix(double matrix[n][k]) {
     }
 }
 
-double fillInVect(double matr[n][k], double vect[n]&) {
-    double vect[n];
+void printOutVector(double vect[n]) {
+    cout << "\nGenerated vector:" << endl;
 
+    for (int i = 0; i < n; i++) {
+        cout << vect[i] << "  ";
+    }
+    cout << "\n\n";
+}
+
+void fillInVect(double matr[n][k], double vect[n]) {
     for (int i = 0; i < n; i++) {
         vect[i] = matr[i][0];
     }
-    return vect;
-
 }
 
-void maxAbsElement(double matr[n][k], double vect[n]) {
-    double tempMax = abs(matr[0][0]); 
-   
+void createMaxAbsVect(double matr[n][k], double vect[n]) {
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < k; j++) {
-            double absValue = abs(matr[i][j]); 
-            if (absValue > tempMax) { 
-                vect[i] = tempMax;
+        vect[i] = matr[i][0];
+        for (int j = 1; j < k; j++) {
+            double absValue = fabs(matr[i][j]); 
+            if (vect[i] > absValue) { 
+                vect[i] = absValue;
             }
         }
-        cout << tempMax << endl;
-        tempMax = numeric_limits<double>::min();
     }
 }
+
+double calculateSum(double matr[][k]) {
+    double sum = 0.0;
+
+    for (int i; i < n; i++) {
+        for (int j; j < k; j++) {
+            sum += matr[i][j];
+        }
+    }
+
+    return sum;
+}
+
+double calcGreaterThanAverage(double matr[n][k], double average) {
+    double sumGreaterThanAverage = 0.0;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < k; j++) {
+            if (matr[i][j] > average) {
+                sumGreaterThanAverage += matr[i][j];
+            }
+        }
+    }
+    return sumGreaterThanAverage;
+}
+// 12.3 30
