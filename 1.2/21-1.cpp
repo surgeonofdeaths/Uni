@@ -30,6 +30,7 @@ ofstream writeFile(string fileName) {
 }
 
 int main() {
+	// TODO: fstream
 	string fileName = "example.txt";
 	ofstream file = writeFile(fileName);
 
@@ -38,6 +39,8 @@ int main() {
 		string line;
 		while (getline(inFile, line)) {
 			if (containsDigits(line)) {
+				ofstream newFile(fileName);
+				file << line;
 				cout << line << endl;
 			}
 		}
